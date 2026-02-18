@@ -181,3 +181,50 @@ Mesh* Mesh::generateRGBRectangle(GLdouble w, GLdouble h) {
 
 	return mesh;
 }
+
+
+Mesh* Mesh::generateRGBCubeTriangles(GLdouble length)
+{
+	GLfloat l = GLfloat(length / 2.0f);
+
+	glm::vec4 rojo = { 1, 0, 0, 1 };
+	glm::vec4 verde = { 0, 1, 0, 1 };
+	glm::vec4 azul = { 0, 0, 1, 1 };
+
+	std::vector<glm::vec3> vertices = {
+		{-l,-l, l}, { l,-l, l}, { l, l, l},
+		{-l,-l, l}, { l, l, l}, {-l, l, l},
+
+		{ l,-l,-l}, {-l,-l,-l}, {-l, l,-l},
+		{ l,-l,-l}, {-l, l,-l}, { l, l,-l},
+
+		{-l,-l,-l}, {-l,-l, l}, {-l, l, l},
+		{-l,-l,-l}, {-l, l, l}, {-l, l,-l},
+
+		{ l,-l, l}, { l,-l,-l}, { l, l,-l},
+		{ l,-l, l}, { l, l,-l}, { l, l, l},
+
+		{-l, l, l}, { l, l, l}, { l, l,-l},
+		{-l, l, l}, { l, l,-l}, {-l, l,-l},
+
+		{-l,-l,-l}, { l,-l,-l}, { l,-l, l},
+		{-l,-l,-l}, { l,-l, l}, {-l,-l, l}
+	};
+
+	std::vector<glm::vec4> colors = {
+		rojo, rojo, rojo, rojo, rojo, rojo,
+		rojo, rojo, rojo, rojo, rojo, rojo,
+		verde, verde, verde, verde, verde, verde,
+		verde, verde, verde, verde, verde, verde,
+		azul, azul, azul, azul, azul, azul,
+		azul, azul, azul, azul, azul, azul
+	};
+
+	Mesh* mesh = new Mesh();
+	mesh->mPrimitive = GL_TRIANGLES;
+	mesh->mNumVertices = GLuint(vertices.size());
+	mesh->vVertices = vertices;
+	mesh->vColors = colors;
+
+	return mesh;
+}

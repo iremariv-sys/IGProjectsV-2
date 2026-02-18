@@ -14,6 +14,8 @@ public:
 	static Mesh* generateRGBTriangle(GLdouble r); //APARTADO 7
 	//static Mesh* generateRectangle(GLdouble w, GLdouble h);
 	static Mesh* generateRGBRectangle(GLdouble w, GLdouble h); //APARTADO 8
+	static Mesh* generateCube(GLdouble length);
+	static Mesh* generateRGBCubeTriangles(GLdouble length); //encena 3
 
 	Mesh();
 	virtual ~Mesh();

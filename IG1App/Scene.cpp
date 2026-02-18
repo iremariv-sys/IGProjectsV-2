@@ -72,3 +72,7 @@ Scene::render(Camera const& cam) const
 		el->render(cam.viewMat());
 }
 
+void Scene::update() {
+	for (Abs_Entity* obj : gObjects)
+		obj->update();
+}

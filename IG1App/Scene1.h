@@ -3,5 +3,6 @@ class Scene1 : public Scene
 {
 public:
 	void init() override;
+	//void update() override;
 };
 

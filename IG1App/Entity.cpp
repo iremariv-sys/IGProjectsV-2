@@ -29,6 +29,10 @@ Abs_Entity::unload()
 	mMesh->unload();
 }
 
+void Abs_Entity::update()
+{
+}
+
 EntityWithColors::EntityWithColors()
 {
 	mShader = Shader::get("vcolors");
