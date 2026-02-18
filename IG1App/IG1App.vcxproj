@@ -71,6 +71,8 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityWithTexture.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="IG1App.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Image.h" />
@@ -82,6 +84,7 @@
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
+    <ClInclude Include="Scene4.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SingleColorEntity.h" />
     <ClInclude Include="Texture.h" />
@@ -90,6 +93,8 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityWithTexture.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="RegularPolygon.cpp" />
     <ClCompile Include="IG1App.cpp" />
     <ClCompile Include="main.cpp" />
@@ -102,6 +107,7 @@
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Scene3.cpp" />
+    <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SingleColorEntity.cpp" />
     <ClCompile Include="Texture.cpp" />

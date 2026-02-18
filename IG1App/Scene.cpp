@@ -2,6 +2,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Texture.h"
+#include "Ground.h"
 
 using namespace glm;
 
@@ -15,6 +17,11 @@ Scene::init()
 	// Textures
 
 	// Graphics objects (entities) of the scene
+	// --- TEXTURA DEL SUELO ---
+	//Texture* groundTex = new Texture();
+	//groundTex->load("./../assets/images/baldosaC.png");
+
+	//Ground* ground = new Ground(20.0, 20.0, groundTex);
 	gObjects.push_back(new RGBAxes(400.0));
 }
 
@@ -53,7 +60,7 @@ Scene::setGL()
 {
 	// OpenGL basic setting
 	//glClearColor(1.0, 1.0, 1.0, 1.0); // background color (alpha=1 -> opaque)
-	glClearColor(0.6f, 0.7f, 0.8, 1.0f);
+	glClearColor(0.6f, 0.7f, 0.8f, 1.0f);
 	glEnable(GL_DEPTH_TEST);          // enable Depth test
 }
 void
