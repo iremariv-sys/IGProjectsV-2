@@ -1,0 +1,24 @@
+#include "SingleColorEntity.h"
+using namespace glm;
+
+//APARTADO 4 ESCENA 1
+// Constructor
+SingleColorEntity::SingleColorEntity(glm::vec4 color)
+    : Abs_Entity()
+{
+
+    mColor = color;
+    mShader = Shader::get("simple");
+}
+
+void
+SingleColorEntity::render(mat4 const& modelViewMat) const
+{
+	if (mMesh != nullptr) {
+		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
+		mShader->use();
+		mShader->setUniform("color", mColor);
+		upload(aMat);
+		mMesh->render();
+	}
+}
