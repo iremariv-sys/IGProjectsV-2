@@ -1,12 +1,17 @@
 #include "Ground.h"
 #include "Mesh.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
+
 Ground::Ground(GLdouble w, GLdouble h, Texture* tex)
-    : EntityWithTexture(tex, true)
+    : EntityWithTexture(tex, false)
 {
     mMesh = Mesh::generateRectangleTexCor(w, h);
-    //mMesh->load();
+    //mMesh->load();generateRectangleTexCor
+     // Shader para objetos con textura
+  
+
 
     // Rotamos el suelo para que quede horizontal
     glm::mat4 model = glm::rotate(

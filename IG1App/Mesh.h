@@ -29,6 +29,7 @@ public:
 	GLuint size() const { return mNumVertices; }; // number of elements
 	std::vector<glm::vec3> const& vertices() const { return vVertices; };
 	std::vector<glm::vec4> const& colors() const { return vColors; };
+	std::vector<glm::vec2> const& texCoords() const { return vTexCoords; };
 
 	void load();
 	void unload();
@@ -48,6 +49,7 @@ private:
 	GLuint mVBO;  // vertex buffer object
 	GLuint mCBO;  // color buffer object
 	GLuint mTBO;  // texture coordinate buffer object (añadido)
+	GLuint mTCO;
 };
 
 #endif //_H_Scene_H_

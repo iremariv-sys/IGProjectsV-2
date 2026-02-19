@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Texture.h"
 #include "Ground.h"
+#include <iostream>
 
 using namespace glm;
 
@@ -74,9 +75,16 @@ void
 Scene::render(Camera const& cam) const
 {
 	cam.upload();
-
-	for (Abs_Entity* el : gObjects)
+	std::cout << "Rendering objects..." << std::endl;
+	int i = 0;
+	for (Abs_Entity* el : gObjects) {
+		std::cout << "Object " << i << " ptr = " << el << std::endl;
 		el->render(cam.viewMat());
+		i++;
+	}
+
+	//for (Abs_Entity* el : gObjects)
+	//	el->render(cam.viewMat());
 }
 
 void Scene::update() {

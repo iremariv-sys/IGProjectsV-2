@@ -11,14 +11,19 @@ Texture::~Texture()
 void
 Texture::init()
 {
+	/*glGenTextures(1, &mId);
+	glBindTexture(GL_TEXTURE_2D, mId);*/
+	// genera un identificador para una nueva textura
 	glGenTextures(1, &mId);
-	glBindTexture(GL_TEXTURE_2D, mId);
-
-	// Filters and clamping
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // GL_NEAREST
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // GL_NEAREST
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);     // GL_CLAMP
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);     // GL_CLAMP
+	glBindTexture(GL_TEXTURE_2D, mId); // filters and wrapping
+	glTexParameteri(GL_TEXTURE_2D,
+		GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,
+		GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,
+		GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D,
+		GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
 void

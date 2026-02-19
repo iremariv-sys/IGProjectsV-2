@@ -1,7 +1,7 @@
 #include "Entity.h"
 #include "Texture.h"
 
-class EntityWithTexture : public EntityWithColors
+class EntityWithTexture : public Abs_Entity
 {
 public:
     EntityWithTexture(Texture* tex = nullptr, bool modulate = false);
@@ -15,6 +15,7 @@ public:
 protected:
     //Mesh* mMesh = nullptr;         // puntero a la malla
     Texture* mTexture = nullptr;   // puntero a la textura
+    
     //Shader* mShader = nullptr;
     bool mModulate = false;
 };

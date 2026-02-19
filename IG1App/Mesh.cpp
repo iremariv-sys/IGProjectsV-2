@@ -10,7 +10,7 @@ Mesh::Mesh()
 	:mVAO(NONE)
 	,mVBO(NONE)
 	,mCBO(NONE)
-	
+	,mTCO(NONE)
 {
 }
 
@@ -50,27 +50,24 @@ Mesh::load()
 			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vec4), nullptr);
 			glEnableVertexAttribArray(1);
 
-			}
+		}
 
-			// ---- TEXTURE COORDS ----
-			if (vTexCoords.size() > 0) {
-				glGenBuffers(1, &mTBO);
-				glBindBuffer(GL_ARRAY_BUFFER, mTBO);
-				glBufferData(GL_ARRAY_BUFFER,
-					vTexCoords.size() * sizeof(vec2),
-					vTexCoords.data(),
-					GL_STATIC_DRAW);
+		// ---- TEXTURE COORDS ----
+		if (vTexCoords.size() > 0) {
 
-				glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
-					sizeof(vec2), nullptr);
-				glEnableVertexAttribArray(2);
-
-				glBindVertexArray(0);
-
-			
+			glGenBuffers(1, &mTCO);
+			glBindBuffer(GL_ARRAY_BUFFER, mTCO);
+			glBufferData(GL_ARRAY_BUFFER,
+				vTexCoords.size() * sizeof(vec2),
+				vTexCoords.data(), GL_STATIC_DRAW);
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+				sizeof(vec2), nullptr);
+			glEnableVertexAttribArray(2);
 
 		}
+			glBindVertexArray(0);
 	}
+
 }
 
 void
@@ -86,6 +83,12 @@ Mesh::unload()
 			glDeleteBuffers(1, &mCBO);
 			mCBO = NONE;
 		}
+
+		if (mTBO != NONE) {
+			glDeleteBuffers(1, &mTBO);
+			mTBO = NONE;
+		}
+		if(mTCO != NONE) glDeleteBuffers(1, &mTCO);
 	}
 }
 
@@ -283,14 +286,15 @@ Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
 	Mesh* m = new Mesh();
 
 	m->mPrimitive = GL_TRIANGLE_STRIP;
-
+	m->mNumVertices = 4;
+	m->vVertices.reserve(m->mNumVertices);
 	m->vVertices = {
 		{-w / 2, 0, -h / 2},
 		{-w / 2, 0,  h / 2},
 		{ w / 2, 0, -h / 2},
 		{ w / 2, 0,  h / 2}
 	};
-
+	m->vTexCoords.reserve(m->mNumVertices);
 	m->vTexCoords = {
 		{0.0, 0.0},
 		{0.0, 1.0},
@@ -298,7 +302,7 @@ Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
 		{1.0, 1.0}
 	};
 
-	m->mNumVertices = 4;
+	
 
 	return m;
 }
