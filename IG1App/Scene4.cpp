@@ -5,16 +5,11 @@
 void Scene4::init() {
 	Scene::init();
 
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
 	gObjects.push_back(new RGBAxes(300.0));
-	
-	//PROBLEMA
 	groundTex = new Texture();
 	groundTex->load("../assets/images/baldosaC.png",1);
 
-	Ground* ground = new Ground(300.0, 300.0, groundTex);
+	Ground* ground = new Ground(400.0, 400.0, groundTex);
 	
 	//gObjects.push_back(new Ground(300.0, 300.0, nullptr));
 

@@ -15,14 +15,7 @@ Scene::init()
 
 	// allocate memory and load resources
 	// Lights
-	// Textures
-
-	// Graphics objects (entities) of the scene
-	// --- TEXTURA DEL SUELO ---
-	//Texture* groundTex = new Texture();
-	//groundTex->load("./../assets/images/baldosaC.png");
-
-	//Ground* ground = new Ground(20.0, 20.0, groundTex);
+	// Texture
 	gObjects.push_back(new RGBAxes(400.0));
 }
 
@@ -75,12 +68,9 @@ void
 Scene::render(Camera const& cam) const
 {
 	cam.upload();
-	std::cout << "Rendering objects..." << std::endl;
-	int i = 0;
 	for (Abs_Entity* el : gObjects) {
-		std::cout << "Object " << i << " ptr = " << el << std::endl;
 		el->render(cam.viewMat());
-		i++;
+	
 	}
 
 	//for (Abs_Entity* el : gObjects)

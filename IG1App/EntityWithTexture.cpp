@@ -17,17 +17,14 @@ void EntityWithTexture::render(glm::mat4 const& modelViewMat) const
     glm::mat4 aMat = modelViewMat * mModelMat;
 
     mShader->use();
-    //mShader->setUniform("modelView", aMat);
-   // mShader->setUniform("modelViewMat", aMat);
     mShader->setUniform("modulate", mModulate);
     upload(aMat);
 
     if (mTexture != nullptr)
     {
-        //glActiveTexture(GL_TEXTURE0);
+        
         mTexture->bind();
-        //mShader->setUniform("tex", 0);  // 
-        //mShader->setUniform("tex", 0);
+      
         mMesh->render();
         mTexture->unbind();
     }
