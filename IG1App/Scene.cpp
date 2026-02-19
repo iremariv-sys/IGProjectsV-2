@@ -2,6 +2,9 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Texture.h"
+#include "Ground.h"
+#include <iostream>
 
 using namespace glm;
 
@@ -12,9 +15,7 @@ Scene::init()
 
 	// allocate memory and load resources
 	// Lights
-	// Textures
-
-	// Graphics objects (entities) of the scene
+	// Texture
 	gObjects.push_back(new RGBAxes(400.0));
 }
 
@@ -53,7 +54,7 @@ Scene::setGL()
 {
 	// OpenGL basic setting
 	//glClearColor(1.0, 1.0, 1.0, 1.0); // background color (alpha=1 -> opaque)
-	glClearColor(0.6f, 0.7f, 0.8, 1.0f);
+	glClearColor(0.6f, 0.7f, 0.8f, 1.0f);
 	glEnable(GL_DEPTH_TEST);          // enable Depth test
 }
 void
@@ -67,9 +68,13 @@ void
 Scene::render(Camera const& cam) const
 {
 	cam.upload();
-
-	for (Abs_Entity* el : gObjects)
+	for (Abs_Entity* el : gObjects) {
 		el->render(cam.viewMat());
+	
+	}
+
+	//for (Abs_Entity* el : gObjects)
+	//	el->render(cam.viewMat());
 }
 
 void Scene::update() {

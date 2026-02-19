@@ -21,7 +21,7 @@ public:
 	virtual void init();
 	virtual void update(); //apartado 12
 
-	void render(Camera const& cam) const;
+	virtual void render(Camera const& cam) const;
 
 	// load or unload scene data into the GPU
 	void load();

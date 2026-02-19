@@ -7,9 +7,10 @@ using namespace glm;
 constexpr GLuint NONE = numeric_limits<GLuint>::max();
 
 Mesh::Mesh()
-	: mVAO(NONE)
-	, mVBO(NONE)
-	, mCBO(NONE)
+	:mVAO(NONE)
+	,mVBO(NONE)
+	,mCBO(NONE)
+	,mTCO(NONE)
 {
 }
 
@@ -48,8 +49,25 @@ Mesh::load()
 			glBufferData(GL_ARRAY_BUFFER, vColors.size() * sizeof(vec4), vColors.data(), GL_STATIC_DRAW);
 			glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(vec4), nullptr);
 			glEnableVertexAttribArray(1);
+
 		}
+
+		// ---- TEXTURE COORDS ----
+		if (vTexCoords.size() > 0) {
+
+			glGenBuffers(1, &mTCO);
+			glBindBuffer(GL_ARRAY_BUFFER, mTCO);
+			glBufferData(GL_ARRAY_BUFFER,
+				vTexCoords.size() * sizeof(vec2),
+				vTexCoords.data(), GL_STATIC_DRAW);
+			glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+				sizeof(vec2), nullptr);
+			glEnableVertexAttribArray(2);
+
+		}
+			glBindVertexArray(0);
 	}
+
 }
 
 void
@@ -65,6 +83,12 @@ Mesh::unload()
 			glDeleteBuffers(1, &mCBO);
 			mCBO = NONE;
 		}
+
+		if (mTBO != NONE) {
+			glDeleteBuffers(1, &mTBO);
+			mTBO = NONE;
+		}
+		if(mTCO != NONE) glDeleteBuffers(1, &mTCO);
 	}
 }
 
@@ -227,4 +251,87 @@ Mesh* Mesh::generateRGBCubeTriangles(GLdouble length)
 	mesh->vColors = colors;
 
 	return mesh;
+};
+
+//Mesh* Mesh::generateTexturedRectangle(GLdouble w, GLdouble h)
+//{
+//	Mesh* mesh = new Mesh();
+//
+//	mesh->mPrimitive = GL_TRIANGLE_STRIP;
+//	mesh->mNumVertices = 4;
+//
+//	GLdouble x = w / 2.0;
+//	GLdouble y = h / 2.0;
+//
+//	mesh->vVertices = {
+//		{-x,  y, 0.0},
+//		{-x, -y, 0.0},
+//		{ x,  y, 0.0},
+//		{ x, -y, 0.0}
+//	};
+//
+//	mesh->vTexCoords = {
+//		{0.0f, 1.0f},
+//		{0.0f, 0.0f},
+//		{1.0f, 1.0f},
+//		{1.0f, 0.0f}
+//	};
+//
+//	return mesh;
+//}
+
+
+//Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
+//{
+//	Mesh* m = new Mesh();
+//
+//	m->mPrimitive = GL_TRIANGLE_STRIP;
+//	m->mNumVertices = 4;
+//	m->vVertices.reserve(m->mNumVertices);
+//	m->vVertices = {
+//		{-w / 2, 0, -h / 2},
+//		{-w / 2, 0,  h / 2},
+//		{ w / 2, 0, -h / 2},
+//		{ w / 2, 0,  h / 2}
+//	};
+//	m->vTexCoords.reserve(m->mNumVertices);
+//	m->vTexCoords = {
+//		{0.0, 0.0},
+//		{0.0, 1.0},
+//		{1.0, 0.0},
+//		{1.0, 1.0}
+//	};
+//
+//	
+//
+//	return m;
+//}
+
+Mesh* Mesh::generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh)
+{
+	Mesh* m = new Mesh();
+
+	m->mPrimitive = GL_TRIANGLE_STRIP;
+	m->mNumVertices = 4;
+
+	GLdouble x = w / 2.0;
+	GLdouble z = h / 2.0;
+
+	// Vértices en plano XZ (suelo)
+	m->vVertices = {
+		{-x, 0.0, -z},   // V0
+		{-x, 0.0,  z},   // V1
+		{ x, 0.0, -z},   // V2
+		{ x, 0.0,  z}    // V3
+	};
+
+	// Coordenadas de textura repetidas rw × rh
+	m->vTexCoords = {
+		{0.0,    0.0},     // V0
+		{0.0,    rh},      // V1
+		{rw,     0.0},     // V2
+		{rw,     rh}       // V3
+	};
+
+	return m;
 }

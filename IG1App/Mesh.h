@@ -14,8 +14,10 @@ public:
 	static Mesh* generateRGBTriangle(GLdouble r); //APARTADO 7
 	//static Mesh* generateRectangle(GLdouble w, GLdouble h);
 	static Mesh* generateRGBRectangle(GLdouble w, GLdouble h); //APARTADO 8
-	static Mesh* generateCube(GLdouble length);
+	//static Mesh* generateCube(GLdouble length);
 	static Mesh* generateRGBCubeTriangles(GLdouble length); //encena 3
+	//static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h); //apartado 20
+	static Mesh* generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
 
 	Mesh();
 	virtual ~Mesh();
@@ -28,6 +30,7 @@ public:
 	GLuint size() const { return mNumVertices; }; // number of elements
 	std::vector<glm::vec3> const& vertices() const { return vVertices; };
 	std::vector<glm::vec4> const& colors() const { return vColors; };
+	std::vector<glm::vec2> const& texCoords() const { return vTexCoords; };
 
 	void load();
 	void unload();
@@ -38,6 +41,7 @@ protected:
 	GLuint mNumVertices = 0; // number of elements ( = vVertices.size())
 	std::vector<glm::vec3> vVertices; // vertex array
 	std::vector<glm::vec4> vColors;   // color array
+	std::vector<glm::vec2> vTexCoords; // Añadido: coordenadas de textura
 	virtual void draw() const;
 
 	GLuint mVAO;  // vertex array object
@@ -45,6 +49,8 @@ protected:
 private:
 	GLuint mVBO;  // vertex buffer object
 	GLuint mCBO;  // color buffer object
+	GLuint mTBO;  // texture coordinate buffer object (añadido)
+	GLuint mTCO;
 };
 
 #endif //_H_Scene_H_

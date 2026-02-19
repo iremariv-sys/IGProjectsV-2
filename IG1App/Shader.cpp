@@ -122,6 +122,13 @@ Shader::setUniform(const string& name, const glm::mat4& value)
 {
 	glUniformMatrix4fv(glGetUniformLocation(mProgram, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
+//se agrega el método para setear un uniform de tipo int, que se usará para el sampler2D
+void Shader::setUniform(const string& name, int value)
+{
+	glUniform1i(glGetUniformLocation(mProgram, name.c_str()), value);
+}
+
+
 
 Shader*
 Shader::get(const string& name)
@@ -167,3 +174,4 @@ Shader::setupGlobals()
 	// Link it to the binding point 2
 	glBindBufferBase(GL_UNIFORM_BUFFER, 2, uboGlobals);
 }
+
