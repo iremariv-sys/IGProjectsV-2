@@ -47,6 +47,7 @@ EntityWithColors::render(mat4 const& modelViewMat) const
 		upload(aMat);
 		mMesh->render();
 	}
+
 }
 
 RGBAxes::RGBAxes(GLdouble l)

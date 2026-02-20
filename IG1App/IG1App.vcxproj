@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BoxOutline.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityWithTexture.h" />
@@ -93,6 +94,7 @@
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoxOutline.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityWithTexture.cpp" />

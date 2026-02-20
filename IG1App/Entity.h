@@ -45,6 +45,8 @@ public:
 	void render(const glm::mat4& modelViewMat) const override;
 };
 
+
+
 class RGBAxes : public EntityWithColors
 {
 public:

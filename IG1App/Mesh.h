@@ -17,7 +17,8 @@ public:
 	//static Mesh* generateCube(GLdouble length);
 	static Mesh* generateRGBCubeTriangles(GLdouble length); //encena 3
 	//static Mesh* generateRectangleTexCor(GLdouble w, GLdouble h); //apartado 20
-	static Mesh* generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh);
+	static Mesh* generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh); //apartado 21
+	static Mesh* generateBoxOutline(GLdouble length); //apartado 22
 
 	Mesh();
 	virtual ~Mesh();

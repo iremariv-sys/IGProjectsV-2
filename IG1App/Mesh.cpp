@@ -335,3 +335,72 @@ Mesh* Mesh::generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh)
 
 	return m;
 }
+
+// Apartado 22: Generar un cubo con líneas 
+//Mesh* Mesh::generateBoxOutline(GLdouble length)
+//{
+//	Mesh* m = new Mesh();
+//
+//	//m->mPrimitive = GL_TRIANGLE_STRIP;
+//	m->mPrimitive = GL_TRIANGLE_STRIP;
+//	m->mNumVertices = 10;
+//
+//	double h = length / 2.0;
+//
+//	// Vértices del cubo (8 vértices)
+//	glm::vec3 V0(-h, h, h); // arriba frontal izq
+//	glm::vec3 V1(h, h, h); // arriba frontal der
+//	glm::vec3 V2(h, h, -h); // arriba trasera der
+//	glm::vec3 V3(-h, h, -h); // arriba trasera izq
+//
+//	glm::vec3 V4(-h, -h, h); // abajo frontal izq
+//	glm::vec3 V5(h, -h, h); // abajo frontal der
+//	glm::vec3 V6(h, -h, -h); // abajo trasera der
+//	glm::vec3 V7(-h, -h, -h); // abajo trasera izq
+//
+//	// Orden correcto para GL_TRIANGLE_STRIP (10 vértices)
+//	//m->vVertices = {
+//	//	V0, V4,
+//	//	V1, V5,
+//	//	V2, V6,
+//	//	V3, V7,
+//	//	V0, V4   // repetidos para cerrar
+//	//};
+//	m->vVertices = {
+//		V0, V1, V5, V0, V5, V4, // cara frontal (Z+)
+//		V3, V2, V6, V3, V6, V7, // cara trasera (Z-)
+//		V0, V3, V7, V0, V7, V4, // cara izquierda (X-)
+//		V1, V2, V6, V1, V6, V5, // cara derecha (X+)
+//		V0, V1, V2, V0, V2, V3, // cara superior (Y+)
+//		V4, V5, V6, V4, V6, V7  // cara inferior (Y-)
+//	};
+//	return m;
+//}
+
+	Mesh* Mesh::generateBoxOutline(GLdouble length)
+	{
+		Mesh* m = new Mesh();
+		m->mPrimitive = GL_TRIANGLE_STRIP;
+		m->mNumVertices = 10;
+
+		double h = length / 2.0;
+
+		glm::vec3 V0(-h, h, h);
+		glm::vec3 V1(h, h, h);
+		glm::vec3 V2(h, h, -h);
+		glm::vec3 V3(-h, h, -h);
+		glm::vec3 V4(-h, -h, h);
+		glm::vec3 V5(h, -h, h);
+		glm::vec3 V6(h, -h, -h);
+		glm::vec3 V7(-h, -h, -h);
+
+		m->vVertices = {
+			V0, V4,
+			V1, V5,
+			V2, V6,
+			V3, V7,
+			V0, V4
+		};
+
+		return m;
+	}

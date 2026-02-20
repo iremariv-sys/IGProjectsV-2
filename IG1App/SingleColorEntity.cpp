@@ -14,11 +14,23 @@ SingleColorEntity::SingleColorEntity(glm::vec4 color)
 void
 SingleColorEntity::render(mat4 const& modelViewMat) const
 {
+	//if (mMesh != nullptr) {
+	//	mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
+	//	mShader->use();
+	//	mShader->setUniform("color", mColor);
+	//	upload(aMat);
+	//	mMesh->render();
+	//}	
+	
 	if (mMesh != nullptr) {
-		mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
+		mat4 aMat = modelViewMat * mModelMat;
 		mShader->use();
 		mShader->setUniform("color", mColor);
 		upload(aMat);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		mMesh->render();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+	
+	
 }
