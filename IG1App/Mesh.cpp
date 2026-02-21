@@ -337,70 +337,125 @@ Mesh* Mesh::generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh)
 }
 
 // Apartado 22: Generar un cubo con líneas 
-//Mesh* Mesh::generateBoxOutline(GLdouble length)
+
+
+	//Mesh* Mesh::generateBoxOutline(GLdouble length)
+	//{
+	//	Mesh* m = new Mesh();
+	//	m->mPrimitive = GL_TRIANGLE_STRIP;
+	//	m->mNumVertices = 10;
+
+	//	double h = length / 2.0;
+
+	//	glm::vec3 V0(-h, h, h);
+	//	glm::vec3 V1(h, h, h);
+	//	glm::vec3 V2(h, h, -h);
+	//	glm::vec3 V3(-h, h, -h);
+	//	glm::vec3 V4(-h, -h, h);
+	//	glm::vec3 V5(h, -h, h);
+	//	glm::vec3 V6(h, -h, -h);
+	//	glm::vec3 V7(-h, -h, -h);
+
+	//	m->vVertices = {
+	//		V0, V4,
+	//		V1, V5,
+	//		V2, V6,
+	//		V3, V7,
+	//		V0, V4
+	//	};
+
+	//	return m;
+	//}
+
+
+//Mesh*
+//Mesh::generateBoxOutlineTexCor(GLdouble length)
 //{
 //	Mesh* m = new Mesh();
-//
-//	//m->mPrimitive = GL_TRIANGLE_STRIP;
 //	m->mPrimitive = GL_TRIANGLE_STRIP;
 //	m->mNumVertices = 10;
 //
 //	double h = length / 2.0;
 //
-//	// Vértices del cubo (8 vértices)
-//	glm::vec3 V0(-h, h, h); // arriba frontal izq
-//	glm::vec3 V1(h, h, h); // arriba frontal der
-//	glm::vec3 V2(h, h, -h); // arriba trasera der
-//	glm::vec3 V3(-h, h, -h); // arriba trasera izq
+//	glm::vec3 V0(-h, h, h);
+//	glm::vec3 V1(h, h, h);
+//	glm::vec3 V2(h, h, -h);
+//	glm::vec3 V3(-h, h, -h);
+//	glm::vec3 V4(-h, -h, h);
+//	glm::vec3 V5(h, -h, h);
+//	glm::vec3 V6(h, -h, -h);
+//	glm::vec3 V7(-h, -h, -h);
 //
-//	glm::vec3 V4(-h, -h, h); // abajo frontal izq
-//	glm::vec3 V5(h, -h, h); // abajo frontal der
-//	glm::vec3 V6(h, -h, -h); // abajo trasera der
-//	glm::vec3 V7(-h, -h, -h); // abajo trasera izq
-//
-//	// Orden correcto para GL_TRIANGLE_STRIP (10 vértices)
-//	//m->vVertices = {
-//	//	V0, V4,
-//	//	V1, V5,
-//	//	V2, V6,
-//	//	V3, V7,
-//	//	V0, V4   // repetidos para cerrar
-//	//};
 //	m->vVertices = {
-//		V0, V1, V5, V0, V5, V4, // cara frontal (Z+)
-//		V3, V2, V6, V3, V6, V7, // cara trasera (Z-)
-//		V0, V3, V7, V0, V7, V4, // cara izquierda (X-)
-//		V1, V2, V6, V1, V6, V5, // cara derecha (X+)
-//		V0, V1, V2, V0, V2, V3, // cara superior (Y+)
-//		V4, V5, V6, V4, V6, V7  // cara inferior (Y-)
+//		V0, V4,
+//		V1, V5,
+//		V2, V6,
+//		V3, V7,
+//		V0, V4
 //	};
+//
+//	m->vTexCoords = {
+//		{0.0f, 1.0f}, {0.0f, 0.0f},
+//		{1.0f, 1.0f}, {1.0f, 0.0f},
+//		{2.0f, 1.0f}, {2.0f, 0.0f},
+//		{3.0f, 1.0f}, {3.0f, 0.0f},
+//		{4.0f, 1.0f}, {4.0f, 0.0f}
+//	};
+//
 //	return m;
 //}
+Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
+{
+	Mesh* m = new Mesh();
+	m->mPrimitive = GL_TRIANGLES;
+	m->mNumVertices = 36;
 
-	Mesh* Mesh::generateBoxOutline(GLdouble length)
-	{
-		Mesh* m = new Mesh();
-		m->mPrimitive = GL_TRIANGLE_STRIP;
-		m->mNumVertices = 10;
+	double h = length / 2.0;
 
-		double h = length / 2.0;
+	glm::vec3 V0(-h, -h, h);
+	glm::vec3 V1(h, -h, h);
+	glm::vec3 V2(h, -h, -h);
+	glm::vec3 V3(-h, -h, -h);
+	glm::vec3 V4(-h, h, h);
+	glm::vec3 V5(h, h, h);
+	glm::vec3 V6(h, h, -h);
+	glm::vec3 V7(-h, h, -h);
 
-		glm::vec3 V0(-h, h, h);
-		glm::vec3 V1(h, h, h);
-		glm::vec3 V2(h, h, -h);
-		glm::vec3 V3(-h, h, -h);
-		glm::vec3 V4(-h, -h, h);
-		glm::vec3 V5(h, -h, h);
-		glm::vec3 V6(h, -h, -h);
-		glm::vec3 V7(-h, -h, -h);
+	m->vVertices = {
+		// cara frontal
+		V4, V5, V1, V4, V1, V0,
+		// cara trasera
+		V6, V7, V3, V6, V3, V2,
+		// izquierda
+		V7, V4, V0, V7, V0, V3,
+		// derecha
+		V5, V6, V2, V5, V2, V1,
+		// superior
+		//V7, V6, V5, V7, V5, V4,
+		// inferior
+		V0, V1, V2, V0, V2, V3
+	};
 
-		m->vVertices = {
-			V0, V4,
-			V1, V5,
-			V2, V6,
-			V3, V7,
-			V0, V4
-		};
+	m->vTexCoords = {
+		// cada cara repite el mismo patrón de 6 uv
+		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		
+		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
 
-		return m;
-	}
+		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+
+		//{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		//{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+
+		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+
+		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
+		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+	};
+
+	return m;
+}

@@ -1,3 +1,6 @@
+#ifndef _H_EntityWithTexture_H_
+#define _H_EntityWithTexture_H_
+
 #include "Entity.h"
 #include "Texture.h"
 
@@ -19,3 +22,5 @@ protected:
     //Shader* mShader = nullptr;
     bool mModulate = false;
 };
+
+#endif //_H_EntityWithTexture_H_

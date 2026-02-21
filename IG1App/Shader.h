@@ -29,6 +29,8 @@ public:
 
 	static void setGlobals(const glm::mat4& projection);
 
+
+
 protected:
 	GLuint mProgram;
 

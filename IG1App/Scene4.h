@@ -10,5 +10,6 @@ public:
 	~Scene4();
 
 	Texture* groundTex;
+	Texture* boxTex;
 	
 };

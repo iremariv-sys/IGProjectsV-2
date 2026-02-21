@@ -5,4 +5,4 @@
 - Cuando el usuario corrige un problema (por ejemplo "no existe mAutoUpdate"), el asistente debe verificar archivos relevantes y proponer cambios concretos en el código para resolver la compilación o comportamiento.
 
 ## Code Style
-- No usar 'auto' en declaraciones; usar tipos explícitos.
+- No usar 'auto' en declaraciones; usar tipos explícitos. El usuario prefiere que no se use la palabra 'auto' en las declaraciones del código que escribo para él.

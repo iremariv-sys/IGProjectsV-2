@@ -4,7 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 /bin
-
+IG1App.vcxproj
 # User-specific files
 *.rsuser
 *.suo
@@ -363,3 +363,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/IG1App/IG1App.vcxproj
