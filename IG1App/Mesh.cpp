@@ -280,7 +280,6 @@ Mesh* Mesh::generateRGBCubeTriangles(GLdouble length)
 //	return mesh;
 //}
 
-
 //Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
 //{
 //	Mesh* m = new Mesh();
@@ -459,3 +458,33 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 
 	return m;
 }
+
+//Apartado 26
+Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
+{
+	assert(np >= 3); // al menos 3 puntas
+	Mesh* m = new Mesh();
+	m->mPrimitive = GL_TRIANGLE_FAN;
+
+	// vértice central en el origen
+	m->vVertices.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	float outer = float(re);
+	float inner = outer * 0.5f;
+	float step = glm::radians(360.0f) / (np * 2.0f);
+
+	for (GLuint i = 0; i < np * 2; ++i) {
+		float angle = i * step;
+		float radius = (i % 2 == 0) ? outer : inner;
+		float x = radius * cosf(angle);
+		float y = radius * sinf(angle);
+		m->vVertices.push_back(glm::vec3(x, y, float(h)));
+	}
+
+	// cerrar el fan repitiendo el primer vértice del anillo
+	m->vVertices.push_back(m->vVertices[1]);
+
+	m->mNumVertices = GLuint(m->vVertices.size());
+	return m;
+}
+  

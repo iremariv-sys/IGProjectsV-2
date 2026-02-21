@@ -20,6 +20,7 @@ public:
 	static Mesh* generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh); //apartado 21
 	static Mesh* generateBoxOutline(GLdouble length); //apartado 22
 	static Mesh* generateBoxOutlineTexCor(GLdouble length); //apartado 24
+	static Mesh* generateStar3D(GLdouble re, GLuint np, GLdouble h);
 
 	Mesh();
 	virtual ~Mesh();
@@ -40,6 +41,7 @@ public:
 protected:
 	GLuint mPrimitive =
 	  GL_TRIANGLES;          // graphic primitive: GL_POINTS, GL_LINES, GL_TRIANGLES, ...
+	
 	GLuint mNumVertices = 0; // number of elements ( = vVertices.size())
 	std::vector<glm::vec3> vVertices; // vertex array
 	std::vector<glm::vec4> vColors;   // color array

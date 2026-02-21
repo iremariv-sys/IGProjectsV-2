@@ -10,35 +10,18 @@
 //    
 //}
 
-
+//
 BoxOutline::BoxOutline(Texture* tex, GLdouble length) : EntityWithTexture(tex)
-{
-	mMesh = Mesh::generateBoxOutlineTexCor(length);
+{	mMesh = Mesh::generateBoxOutlineTexCor(length);
 }
 
-//void
-//BoxOutline::render(glm::mat4 const& modelViewMat) const
+//BoxOutline::BoxOutline(Texture* outerTex, Texture* innerTex, GLdouble length)
+//    : EntityWithTexture(outerTex), mInnerTexture(innerTex)
 //{
-//	//if (mMesh != nullptr) {
-//	//	glm::mat4 aMat = modelViewMat * mModelMat; // glm matrix multiplication
-//	//	mShader->use();
-//	//	upload(aMat);
-//	//	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//	//	mMesh->render();
-//	//	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-//	//}
-//	if (mMesh != nullptr && mShader != nullptr) {
-//		glm::mat4 aMat = modelViewMat * mModelMat;
-//		mShader->use();
-//		upload(aMat);
-//		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-//		mMesh->render();
-//		// si quieres el contorno encima:
-//		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//		mMesh->render();
-//		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-//	}
+//    mMesh = Mesh::generateBoxOutlineTexCor(length);
 //}
+
+
 void BoxOutline::render(glm::mat4 const& modelViewMat) const {
     // primero renderiza con textura (relleno)
     EntityWithTexture::render(modelViewMat);

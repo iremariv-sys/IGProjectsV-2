@@ -1,6 +1,8 @@
 #include "Scene4.h"
 #include "Ground.h"
 #include "BoxOutline.h"
+#include "Star3D.h"
+#include "Shader.h"
 #include <glm/ext/matrix_transform.hpp>
 
 
@@ -20,6 +22,17 @@ void Scene4::init() {
 	cube->setModelMat(M);
 
 	
+
+	Star3D* star = new Star3D(100.0, 8, 50.0, glm::dvec4(1, 1, 0, 1));
+	
+	// Posicionarla en la escena
+	star->setModelMat(glm::translate(glm::dmat4(1.0), glm::dvec3(0.0, 200.0, 0.0)));
+
+	// Añadirla al vector de entidades
+	gObjects.push_back(star);
+
+
+
 	gObjects.push_back(cube);
 	gObjects.push_back(ground);
 
@@ -32,6 +45,8 @@ Scene4::~Scene4()
 
 	delete boxTex;
 	boxTex = nullptr;
+
+
 }
 
 void Scene4::update()
