@@ -22,14 +22,6 @@ void Scene4::init() {
 	glm::mat4 M = glm::translate(glm::mat4(1.0f), glm::vec3(0, 50, 0));
 	cube->setModelMat(M);
 
-	// Textura interior
-	Texture* texInterior = new Texture();
-	texInterior->load("../assets/images/container.jpg", 1);
-
-	// Caja con dos texturas
-	//BoxOutline* cube = new BoxOutline(100.0, texExterior);
-	//cube->setInnerTexture(texInterior);
-	//
 
 	Star3D* star = new Star3D(100.0, 8, 50.0, glm::dvec4(1, 1, 0, 1));
 	
@@ -41,8 +33,8 @@ void Scene4::init() {
 
 
 
-	//gObjects.push_back(cube);
-	//gObjects.push_back(ground);
+	gObjects.push_back(cube);
+	gObjects.push_back(ground);
 
 }
 

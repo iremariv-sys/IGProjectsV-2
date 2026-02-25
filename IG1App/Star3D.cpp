@@ -93,7 +93,7 @@ void Star3D::update()
     angZ += 5.0f;
 
     mModelMat = glm::mat4(1.0f);
-   // mModelMat = glm::translate(mModelMat, mPos);  // usa la posición guardada
+   mModelMat = glm::translate(mModelMat, mPos);  // usa la posición guardada
     mModelMat = glm::rotate(mModelMat, glm::radians(angY), glm::vec3(0, 1, 0));
     mModelMat = glm::rotate(mModelMat, glm::radians(angZ), glm::vec3(0, 0, 1));
 }

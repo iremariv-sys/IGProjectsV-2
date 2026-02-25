@@ -420,36 +420,19 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 	glm::vec3 V6(h, h, -h);
 	glm::vec3 V7(-h, h, -h);
 
-	//m->vVertices = {
-	//	// cara frontal
-	//	V4, V5, V1, V4, V1, V0,
-	//	// cara trasera
-	//	V6, V7, V3, V6, V3, V2,
-	//	// izquierda
-	//	V7, V4, V0, V7, V0, V3,
-	//	// derecha
-	//	V5, V6, V2, V5, V2, V1,
-	//	// superior
-	//	//V7, V6, V5, V7, V5, V4,
-	//	// inferior
-	//	V0, V1, V2, V0, V2, V3
-	//};
-		m->vVertices = {
-		// --- EXTERIOR ---
-		V4, V5, V1,  V4, V1, V0,   // frontal
-		//V6, V7, V3,  V6, V3, V2,   // trasera
-		V7, V4, V0,  V7, V0, V3,   // izquierda
-		V5, V6, V2,  V5, V2, V1,   // derecha
-		//	V7, V6, V5,  V7, V5, V4,   // superior 
-			V0, V1, V2,  V0, V2, V3,   // inferior
-
-			// --- INTERIOR ---
-			V0, V1, V5,  V0, V5, V4,   // frontal interior
-			V2, V3, V7,  V2, V7, V6,   // trasera interior
-			V3, V0, V4,  V3, V4, V7,   // izquierda interior
-			V1, V2, V6,  V1, V6, V5,   // derecha interior
-			//V4, V5, V6,  V4, V6, V7,   // superior interior  <-- AHORA CORRECTA
-			V3, V2, V1,  V3, V1, V0    // inferior interior
+	m->vVertices = {
+		// cara frontal
+		V4, V5, V1, V4, V1, V0,
+		// cara trasera
+		V6, V7, V3, V6, V3, V2,
+		// izquierda
+		V7, V4, V0, V7, V0, V3,
+		// derecha
+		V5, V6, V2, V5, V2, V1,
+		// superior
+		//V7, V6, V5, V7, V5, V4,
+		// inferior
+		V0, V1, V2, V0, V2, V3
 	};
 
 	m->vTexCoords = {
