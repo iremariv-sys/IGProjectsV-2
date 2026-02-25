@@ -6,6 +6,7 @@ public:
 	SingleColorEntity(glm::vec4 color);
 	virtual ~SingleColorEntity() = default;
 	virtual void render(glm::mat4 const& modelViewMat) const override;
+	virtual void update(float deltaTime) {}
 protected:
 	glm::vec4 mColor;
 };

@@ -420,19 +420,36 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 	glm::vec3 V6(h, h, -h);
 	glm::vec3 V7(-h, h, -h);
 
-	m->vVertices = {
-		// cara frontal
-		V4, V5, V1, V4, V1, V0,
-		// cara trasera
-		V6, V7, V3, V6, V3, V2,
-		// izquierda
-		V7, V4, V0, V7, V0, V3,
-		// derecha
-		V5, V6, V2, V5, V2, V1,
-		// superior
-		//V7, V6, V5, V7, V5, V4,
-		// inferior
-		V0, V1, V2, V0, V2, V3
+	//m->vVertices = {
+	//	// cara frontal
+	//	V4, V5, V1, V4, V1, V0,
+	//	// cara trasera
+	//	V6, V7, V3, V6, V3, V2,
+	//	// izquierda
+	//	V7, V4, V0, V7, V0, V3,
+	//	// derecha
+	//	V5, V6, V2, V5, V2, V1,
+	//	// superior
+	//	//V7, V6, V5, V7, V5, V4,
+	//	// inferior
+	//	V0, V1, V2, V0, V2, V3
+	//};
+		m->vVertices = {
+		// --- EXTERIOR ---
+		V4, V5, V1,  V4, V1, V0,   // frontal
+		//V6, V7, V3,  V6, V3, V2,   // trasera
+		V7, V4, V0,  V7, V0, V3,   // izquierda
+		V5, V6, V2,  V5, V2, V1,   // derecha
+		//	V7, V6, V5,  V7, V5, V4,   // superior 
+			V0, V1, V2,  V0, V2, V3,   // inferior
+
+			// --- INTERIOR ---
+			V0, V1, V5,  V0, V5, V4,   // frontal interior
+			V2, V3, V7,  V2, V7, V6,   // trasera interior
+			V3, V0, V4,  V3, V4, V7,   // izquierda interior
+			V1, V2, V6,  V1, V6, V5,   // derecha interior
+			//V4, V5, V6,  V4, V6, V7,   // superior interior  <-- AHORA CORRECTA
+			V3, V2, V1,  V3, V1, V0    // inferior interior
 	};
 
 	m->vTexCoords = {
@@ -487,4 +504,49 @@ Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
 	m->mNumVertices = GLuint(m->vVertices.size());
 	return m;
 }
-  
+//Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
+//{
+//	Mesh* m = new Mesh();
+//	m->mPrimitive = GL_TRIANGLES;
+//
+//	double h = length / 2.0;
+//
+//	glm::vec3 V0(-h, -h, h);
+//	glm::vec3 V1(h, -h, h);
+//	glm::vec3 V2(h, -h, -h);
+//	glm::vec3 V3(-h, -h, -h);
+//	glm::vec3 V4(-h, h, h);
+//	glm::vec3 V5(h, h, h);
+//	glm::vec3 V6(h, h, -h);
+//	glm::vec3 V7(-h, h, -h);
+//
+//	m->mNumVertices = 60;
+//
+//	m->vVertices = {
+//		// --- EXTERIOR ---
+//		V4, V5, V1,  V4, V1, V0,   // frontal
+//		//V6, V7, V3,  V6, V3, V2,   // trasera
+//		V7, V4, V0,  V7, V0, V3,   // izquierda
+//		V5, V6, V2,  V5, V2, V1,   // derecha
+//		//	V7, V6, V5,  V7, V5, V4,   // superior 
+//			V0, V1, V2,  V0, V2, V3,   // inferior
+//
+//			// --- INTERIOR ---
+//			V0, V1, V5,  V0, V5, V4,   // frontal interior
+//			V2, V3, V7,  V2, V7, V6,   // trasera interior
+//			V3, V0, V4,  V3, V4, V7,   // izquierda interior
+//			V1, V2, V6,  V1, V6, V5,   // derecha interior
+//			//V4, V5, V6,  V4, V6, V7,   // superior interior  <-- AHORA CORRECTA
+//			V3, V2, V1,  V3, V1, V0    // inferior interior
+//	};
+//
+//	for (int i = 0; i < 10; i++) {
+//
+//		m->vTexCoords.insert(m->vTexCoords.end(), {
+//			{0,1}, {1,1}, {1,0},
+//			{0,1}, {1,0}, {0,0}
+//			});
+//	}
+//
+//	return m;
+//}

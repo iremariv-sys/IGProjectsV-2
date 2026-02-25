@@ -10,12 +10,15 @@ public:
     //Star3D(GLdouble re, GLuint np, GLdouble h, glm::dvec4 const& color);
 
     Star3D(GLdouble re, GLuint np, GLdouble h, glm::dvec4 const& color);
-
+    void update() override;
     // Sobrescribe el render para dibujar dos estrellas unidas por el origen
     void render(glm::mat4 const& modelViewMat) const override;
+
+   
 
 private:
     GLdouble mRe;   // radio exterior
     GLuint   mNp;   // número de puntas
     GLdouble mH;    // altura (z = +h y z = -h)
+    glm::vec3 mPos;
 };

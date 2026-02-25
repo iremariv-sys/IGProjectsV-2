@@ -27,7 +27,7 @@ public:
 	// load or unload entity data into the GPU
 	void load();
 	void unload();
-	void update();
+	virtual void update();
 
 protected:
 	Mesh* mMesh = nullptr; // the mesh

@@ -4,6 +4,7 @@
 #include "Star3D.h"
 #include "Shader.h"
 #include <glm/ext/matrix_transform.hpp>
+#include <GLFW/glfw3.h>
 
 
 void Scene4::init() {
@@ -21,7 +22,14 @@ void Scene4::init() {
 	glm::mat4 M = glm::translate(glm::mat4(1.0f), glm::vec3(0, 50, 0));
 	cube->setModelMat(M);
 
-	
+	// Textura interior
+	Texture* texInterior = new Texture();
+	texInterior->load("../assets/images/container.jpg", 1);
+
+	// Caja con dos texturas
+	//BoxOutline* cube = new BoxOutline(100.0, texExterior);
+	//cube->setInnerTexture(texInterior);
+	//
 
 	Star3D* star = new Star3D(100.0, 8, 50.0, glm::dvec4(1, 1, 0, 1));
 	
@@ -33,8 +41,8 @@ void Scene4::init() {
 
 
 
-	gObjects.push_back(cube);
-	gObjects.push_back(ground);
+	//gObjects.push_back(cube);
+	//gObjects.push_back(ground);
 
 }
 
@@ -46,14 +54,24 @@ Scene4::~Scene4()
 	delete boxTex;
 	boxTex = nullptr;
 
+	//delete texInterior
+	//	texInterior = nullptr;
+
 
 }
+
+//void Scene4::update()
+//{
+//	Scene::update();   
+//}
 
 void Scene4::update()
 {
-	Scene::update();   
-}
+	Scene::update();
+	for (auto obj : gObjects)
+		obj->update();
 
+}
 //gObjects.push_back(new BoxCubeOpen(100.0));
 
 	//gObjects.push_back(new Ground(300.0, 300.0, nullptr));
