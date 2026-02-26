@@ -1,6 +1,7 @@
 #include "IG1App.h"
 
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -186,20 +187,40 @@ IG1App::key(unsigned int key)
 	case 'u':
 		mScenes[mCurrentScene]->update();
 		break;
+	//case 'U':
+	//{
+	//	static bool anim = false;
+	//	anim = !anim;   // activar / desactivar
+
+	//	while (anim) {
+	//		mScenes[mCurrentScene]->update();
+	//		mNeedsRedisplay = true;
+	//		display();
+	//		glfwWaitEventsTimeout(0.03);
+
+	//		glfwPollEvents();   
+	//	}
+	//}
 	case 'U':
 	{
 		static bool anim = false;
-		anim = !anim;   // activar / desactivar
+		anim = !anim;
 
 		while (anim) {
+			double frameStart = glfwGetTime();
+
 			mScenes[mCurrentScene]->update();
 			mNeedsRedisplay = true;
 			display();
-			glfwWaitEventsTimeout(0.03);
+			glfwPollEvents();
 
-			glfwPollEvents();   
+			double elapsed = glfwGetTime() - frameStart;
+			if (elapsed < 0.03)
+				std::this_thread::sleep_for(
+					std::chrono::duration<double>(0.03 - elapsed));
 		}
 	}
+	
 	break;
 	
 	default:

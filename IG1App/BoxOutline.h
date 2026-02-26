@@ -10,9 +10,14 @@ class BoxOutline : public EntityWithTexture
 {
 public:
     //explicit BoxOutline(GLdouble length);
-	BoxOutline(Texture* tex, GLdouble length);
+	//BoxOutline(Texture* tex, GLdouble length);
+	BoxOutline(Texture* texExterior, Texture* texInterior, GLdouble length);
 	void render(glm::mat4 const& modelViewMat) const override;
 
+
+private:
+	Texture* mInnerTexture = nullptr;
 };
+
 
 #endif //_H_BoxOutline_H_

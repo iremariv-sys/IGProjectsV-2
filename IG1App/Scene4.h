@@ -11,5 +11,7 @@ public:
 
 	Texture* groundTex;
 	Texture* boxTex;
+	Texture* starTex;
+	Texture* boxTexInterior;
 	
 };
