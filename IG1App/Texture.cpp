@@ -15,7 +15,7 @@ Texture::init()
 	glBindTexture(GL_TEXTURE_2D, mId);*/
 	// genera un identificador para una nueva textura
 	glGenTextures(1, &mId);
-	glBindTexture(GL_TEXTURE_2D, mId); // filters and wrapping
+	glBindTexture(GL_TEXTURE_2D, mId); 
 	glTexParameteri(GL_TEXTURE_2D,
 		GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,
@@ -70,5 +70,28 @@ Texture::setWrap(GLuint wp) // GL_REPEAT, GL_CLAMP_TO_EDGE, ...
 	glBindTexture(GL_TEXTURE_2D, mId);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wp);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wp);
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+//apartado 35
+void
+Texture::loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer )
+{
+	if (mId == 0)
+		init();
+
+	mWidth = GLuint(width);
+	mHeight = GLuint(height);
+
+	glBindTexture(GL_TEXTURE_2D, mId);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+		mWidth, mHeight, 0,
+		GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+
+	glReadBuffer(buffer);
+
+	glCopyTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 0, 0, mWidth, mHeight);
+
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

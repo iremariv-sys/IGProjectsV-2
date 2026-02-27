@@ -74,7 +74,6 @@ IG1App::init()
 	mScenes[2]->init();
 	mScenes[3]->init();
 	mScenes[4]->init();
-	//mScenes[4]->load();
 	mScenes[mCurrentScene]->load();
 }
 
@@ -187,20 +186,6 @@ IG1App::key(unsigned int key)
 	case 'u':
 		mScenes[mCurrentScene]->update();
 		break;
-	//case 'U':
-	//{
-	//	static bool anim = false;
-	//	anim = !anim;   // activar / desactivar
-
-	//	while (anim) {
-	//		mScenes[mCurrentScene]->update();
-	//		mNeedsRedisplay = true;
-	//		display();
-	//		glfwWaitEventsTimeout(0.03);
-
-	//		glfwPollEvents();   
-	//	}
-	//}
 	case 'U':
 	{
 		static bool anim = false;

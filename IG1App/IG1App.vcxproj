@@ -76,10 +76,12 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityWithTexture.h" />
+    <ClInclude Include="GlassParapet.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="IG1App.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="Photo.h" />
     <ClInclude Include="RegularPolygon.h" />
     <ClInclude Include="RGBCube.h" />
     <ClInclude Include="RGBRectangle.h" />
@@ -100,7 +102,9 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityWithTexture.cpp" />
+    <ClCompile Include="GlassParapet.cpp" />
     <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="Photo.cpp" />
     <ClCompile Include="RegularPolygon.cpp" />
     <ClCompile Include="IG1App.cpp" />
     <ClCompile Include="main.cpp" />

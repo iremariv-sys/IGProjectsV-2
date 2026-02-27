@@ -13,10 +13,12 @@ public:
     Star3D(GLdouble re, GLuint np, GLdouble h, Texture* tex);
     void update() override;
     
-    // Sobrescribe el render para dibujar dos estrellas unidas por el origen
+   
     void render(glm::mat4 const& modelViewMat) const override;
 
-   
+    //void syncModelMats() { mLowerModelMat = mModelMat; }
+    void setPosition(glm::vec3 const& pos);
+    void setModelMat(glm::mat4 const& aMat);
 
 private:
     GLdouble mRe;   // radio exterior

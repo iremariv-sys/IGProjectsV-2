@@ -23,7 +23,9 @@ public:
 	GLuint width() const { return mWidth; };
 	GLuint height() const { return mHeight; };
 
-	void setWrap(GLuint wp); // GL_REPEAT, GL_CLAMP_TO_EDGE, ...
+	void setWrap(GLuint wp); 
+	//apartado 34
+	void loadColorBuffer(GLsizei width, GLsizei height, GLuint buffer);
 
 protected:
 	void init();

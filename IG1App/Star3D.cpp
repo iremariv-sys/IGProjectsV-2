@@ -181,3 +181,22 @@ void Star3D::update()
     mLowerModelMat = glm::translate(glm::mat4(1.0f), mPos);
     mLowerModelMat = glm::rotate(mLowerModelMat, glm::radians(angZLower), glm::vec3(0.0f, 0.0f, 1.0f));
 }
+void Star3D::setPosition(glm::vec3 const& pos)
+{
+    mPos = pos;
+    // sincronizar matrices de modelo para ambas mitades (sin rotación)
+    glm::mat4 t = glm::translate(glm::mat4(1.0f), mPos);
+    Abs_Entity::setModelMat(t); // actualiza mModelMat base
+    mLowerModelMat = t;
+}
+
+void Star3D::setModelMat(glm::mat4 const& aMat)
+{
+    // actualizar la matriz base y también la inferior
+    Abs_Entity::setModelMat(aMat);
+    mLowerModelMat = aMat;
+
+    // extraer la traslación para mantener mPos coherente
+    glm::vec4 col = aMat[3];
+    mPos = glm::vec3(col.x, col.y, col.z);
+}

@@ -1,3 +1,6 @@
+#ifndef _H_Scene4_H_
+#define _H_Scene4_H_
+
 #include "Scene.h"
 #include "Texture.h"
 
@@ -13,5 +16,8 @@ public:
 	Texture* boxTex;
 	Texture* starTex;
 	Texture* boxTexInterior;
+	Texture* glassTex;
 	
 };
+
+#endif //_H_Scene4_H_
