@@ -280,31 +280,6 @@ Mesh* Mesh::generateRGBCubeTriangles(GLdouble length)
 //	return mesh;
 //}
 
-//Mesh* Mesh::generateRectangleTexCor(GLdouble w, GLdouble h)
-//{
-//	Mesh* m = new Mesh();
-//
-//	m->mPrimitive = GL_TRIANGLE_STRIP;
-//	m->mNumVertices = 4;
-//	m->vVertices.reserve(m->mNumVertices);
-//	m->vVertices = {
-//		{-w / 2, 0, -h / 2},
-//		{-w / 2, 0,  h / 2},
-//		{ w / 2, 0, -h / 2},
-//		{ w / 2, 0,  h / 2}
-//	};
-//	m->vTexCoords.reserve(m->mNumVertices);
-//	m->vTexCoords = {
-//		{0.0, 0.0},
-//		{0.0, 1.0},
-//		{1.0, 0.0},
-//		{1.0, 1.0}
-//	};
-//
-//	
-//
-//	return m;
-//}
 
 Mesh* Mesh::generaRectangleTexCor(GLdouble w, GLdouble h, GLuint rw, GLuint rh)
 {
@@ -407,7 +382,7 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 {
 	Mesh* m = new Mesh();
 	m->mPrimitive = GL_TRIANGLES;
-	m->mNumVertices = 36;
+	m->mNumVertices = 24; // 4 caras laterales × 6 vértices (sin tapa ni piso)
 
 	double h = length / 2.0;
 
@@ -431,29 +406,29 @@ Mesh* Mesh::generateBoxOutlineTexCor(GLdouble length)
 		V5, V6, V2, V5, V2, V1,
 		// superior
 		//V7, V6, V5, V7, V5, V4,
-		// inferior
-		V0, V1, V2, V0, V2, V3
+		// inferior ( el piso lo gestiona Box)
+		//V0, V1, V2, V0, V2, V3
 	};
 
 	m->vTexCoords = {
-		// cada cara repite el mismo patrón de 6 uv
-		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
-		
-		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		// cada cara: V invertido (0=abajo, 1=arriba imagen derecha)
+		{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
 
-		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
 
-		//{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		//{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
 
-		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		//{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		//{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
 
-		{0.0f, 1.0f}, {1.0f, 1.0f}, {1.0f, 0.0f},
-		{0.0f, 1.0f}, {1.0f, 0.0f}, {0.0f, 0.0f},
+		{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
+
+		//{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f},
+		//{0.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f},
 	};
 
 	return m;
@@ -466,7 +441,7 @@ Mesh* Mesh::generateStar3D(GLdouble re, GLuint np, GLdouble h)
 	Mesh* m = new Mesh();
 	m->mPrimitive = GL_TRIANGLE_FAN;
 
-	// vértice central en el origen
+	// vertice central en el origen
 	m->vVertices.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
 
 	float outer = float(re);

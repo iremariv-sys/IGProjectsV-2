@@ -144,9 +144,7 @@ IG1App::display() const
 { // double buffering
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clears the back buffer
-	std::cout << "mScenes size = " << mScenes.size() << std::endl;
-	std::cout << "mCurrentScene = " << mCurrentScene << std::endl;
-	std::cout << "ptr = " << mScenes[mCurrentScene] << std::endl;
+	
 	mScenes[mCurrentScene]->render(*mCamera); // uploads the viewport and camera to the GPU
 
 	glfwSwapBuffers(mWindow); // swaps the front and back buffer

@@ -14,9 +14,12 @@ public:
 
 	Texture* groundTex;
 	Texture* boxTex;
-	Texture* starTex;
 	Texture* boxTexInterior;
+	Texture* boxLidTex;
+	Texture* boxLidTexInterior;
+	Texture* starTex;
 	Texture* glassTex;
+	Texture* grassTex;  
 	
 };
 
